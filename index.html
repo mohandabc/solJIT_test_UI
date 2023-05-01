@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+    <title>My Web Page</title>
+  </head>
+  <body>
+    <h1>Example Data</h1>
+    <ul id="data"></ul>
+    <div id="chartdiv"></div>
+
+    <script>
+      fetch('http://127.0.0.1:5000')
+        .then(response => response.json())
+        .then(data => {
+          data.forEach(record => {
+            const li = document.createElement('li');
+            li.textContent = `${record.name}`;
+            document.querySelector('#data').appendChild(li);
+          });
+        
+        })
+        .catch(error => console.error(error));
+    </script>
+  </body>
+</html>
